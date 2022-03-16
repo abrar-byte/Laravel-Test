@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('jadwal_id');
             $table->longText('resume');
-            $table->mediumText('persons');
-            $table->text('contribution');
+            // $table->mediumText('persons');
+            // $table->text('contribution');
             $table->text('result');
+            $table->softDeletes();
+
 
 
 

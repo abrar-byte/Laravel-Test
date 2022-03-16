@@ -16,6 +16,8 @@
 
 <div class="table-responsive col-lg-8">
   <a href="/dashboard/anggotas/create" class="btn btn-primary mb-3">Tambahkan Anggota</a>
+
+  <a href="/dashboard/pivotAnggota/create" class="btn btn-primary mb-3">Organisasi & posisi</a>
   <table class="table table-striped table-sm">
     <thead>
       <tr>
@@ -39,10 +41,24 @@
       <tr>
         <td>{{ $loop->iteration }}</td>
         <td>{{ $anggota->name }}</td>
-        <td>{{ $anggota->organisasi->name }}</td>
+        <td> @if ($anggota->organisasi->count())
+          @foreach($anggota->organisasi as $key => $h)
+          <li> {{ $h->name }} </li>
+          @endforeach
+          @else
+          <p class="text-danger">Tidak ada</p>
+          @endif
+        </td>
         <td>{{ $anggota->height }}cm</td>
         <td>{{ $anggota->weight }}kg</td>
-        <td>{{ $anggota->position }}</td>
+        <td> @if ($anggota->organisasi->count())
+          @foreach($anggota->organisasi as $key => $h)
+          <li> {{ $h->pivot->position }} </li>
+          @endforeach
+          @else
+          <p class="text-danger">Tidak ada</p>
+          @endif
+        </td>
         <td>{{ $anggota->number }}</td>
         <td>
 

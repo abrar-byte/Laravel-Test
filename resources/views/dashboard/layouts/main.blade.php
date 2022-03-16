@@ -18,8 +18,8 @@
   <link href="/css/dashboard.css" rel="stylesheet">
 
   {{-- {{ trix Editor }} --}}
-  <link rel="stylesheet" type="text/css" href="/trix.css">
-  <script type="text/javascript" src="/trix.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/trix.css">
+  <script type="text/javascript" src="/js/trix.js"></script>
 
   <style>
     trix-toolbar [data-trix-button-group="file-tools"] {

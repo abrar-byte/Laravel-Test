@@ -19,7 +19,6 @@
 
       @enderror
     </div>
-
     <div class="mb-3">
       <label for="slug" class="form-label">Slug</label>
       <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required
@@ -32,7 +31,7 @@
       @enderror
     </div>
     <div class="mb-3">
-      <label for="organisasi" class="form-label">Organisasi</label>
+      <label for="organisasi_id" class="form-label">Organisasi</label>
       <select class="form-select" name="organisasi_id">
         @foreach ($organisasis as $organisasi)
         @if (old('organisasi_id') == $organisasi->id)

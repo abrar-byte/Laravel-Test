@@ -45,7 +45,7 @@
               </div>
               <div class="card-title">
                 <h5>Cabang Olahraga</h5>
-                <p>{{ $organisasi->sport }}</p>
+                <p>{{ $organisasi->olahraga->name }}</p>
               </div>
 
 

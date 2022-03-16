@@ -15,7 +15,7 @@
             <th scope="col">Acara</th>
             {{-- <th scope="col">Resume</th> --}}
             <th scope="col">Anggota yang Hadir</th>
-            {{-- <th scope="col">Kontribusi Anggota</th> --}}
+            <th scope="col">Kontribusi Anggota</th>
             {{-- <th scope="col">Hasil </th> --}}
             <th scope="col">Action </th>
 
@@ -32,8 +32,26 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $hasil->jadwal->name }}</td>
             {{-- <td>{{ $hasil->resume }}</td> --}}
-            <td>{{ $hasil->persons }}</td>
-            {{-- <td>{{ $hasil->contribution }}</td> --}}
+            <td>
+              @if ($hasil->anggota->count())
+
+              @foreach($hasil->anggota as $h)
+              <li> {{ $h->name }} </li>
+              @endforeach
+              @else
+              <p class="text-danger">Tidak ada</p>
+              @endif
+
+            </td>
+            <td>@if ($hasil->anggota->count())
+
+              @foreach($hasil->anggota as $h)
+              <li> {{ $h->pivot->contribution }} </li>
+              @endforeach
+              @else
+              <p class="text-danger">Tidak ada</p>
+              @endif
+            </td>
             {{-- <td>{{ $hasil->result }}</td> --}}
 
 

@@ -11,7 +11,7 @@
   <form method="post" action="/dashboard/organisasis" class="mb-5" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
+      <label for="name" class="form-label">Nama</label>
       <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required
         autofocus value="{{ old('name') }}">
       @error('name')
@@ -35,7 +35,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="logo" class="form-label">Post Image</label>
+      <label for="logo" class="form-label">Upload Logo</label>
       <img class="img-preview img-fluid mb-3 col-sm-5">
       <input class="form-control @error('logo') is-invalid @enderror" type="file" id="logo" name="logo"
         onchange="previewImage()">
@@ -50,7 +50,7 @@
 
 
     <div class="mb-3">
-      <label for="year" class="form-label">year</label>
+      <label for="year" class="form-label">Tahun Berdiri</label>
       <input type="number" class="form-control @error('year') is-invalid @enderror" id="year" name="year" required
         value="{{ old('year') }}">
       @error('year')
@@ -62,7 +62,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="address" class="form-label">address</label>
+      <label for="address" class="form-label">Alamat</label>
       <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
         required value="{{ old('address') }}">
       @error('address')
@@ -74,15 +74,20 @@
     </div>
 
     <div class="mb-3">
-      <label for="sport" class="form-label">sport</label>
-      <input type="text" class="form-control @error('sport') is-invalid @enderror" id="sport" name="sport" required
-        value="{{ old('sport') }}">
-      @error('sport')
-      <div class="invalid-feedback">
-        {{ $message }}
-      </div>
+      <label for="olahraga_id" class="form-label">Cabang Olahraga</label>
+      <select class="form-select" name="olahraga_id">
+        @foreach ($olahragas as $olahraga)
+        @if (old('olahraga_id') == $olahraga->id)
+        <option value="{{ $olahraga->id }}" selected>{{ $olahraga->name }}</option>
+        @else
+        <option value="{{ $olahraga->id }}">{{ $olahraga->name }}</option>
 
-      @enderror
+
+        @endif
+
+        @endforeach
+
+      </select>
     </div>
 
 

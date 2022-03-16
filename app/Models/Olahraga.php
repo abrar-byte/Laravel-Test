@@ -10,31 +10,20 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 
 
 
-class Organisasi extends Model
+
+class Olahraga extends Model
 {
     use HasFactory;
     use Sluggable;
     // use SoftDeletes;
     // use CascadeSoftDeletes;
-
-
     protected $guarded = ['id'];
 
-    public function anggota()
+    public function organisasi()
     {
-        return  $this->belongsToMany(Anggota::class);
+        return  $this->hasMany(Organisasi::class);
     }
 
-    public function jadwal()
-    {
-        return  $this->hasMany(Jadwal::class);
-    }
-
-    public function olahraga()
-    {
-        return $this->belongsTo(Olahraga::class);
-    }
-  
     public function getRouteKeyName()
     
     {
@@ -49,4 +38,5 @@ class Organisasi extends Model
             ]
         ];
     }
+
 }

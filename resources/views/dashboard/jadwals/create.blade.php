@@ -8,17 +8,17 @@
 <div class="col-lg-8">
 
 
-  <form method="post" action="/dashboard/schedules" class="mb-5">
+  <form method="post" action="/dashboard/jadwals" class="mb-5">
     @csrf
 
     <div class="mb-3">
-      <label for="home_team_id" class="form-label">Home Team</label>
-      <select class="form-select" name="home_team_id">
-        @foreach ($teams as $team)
-        @if (old('home_team_id') == $team->id)
-        <option value="{{ $team->id }}" selected>{{ $team->name }}</option>
+      <label for="organisasi_id" class="form-label">Home Team</label>
+      <select class="form-select" name="organisasi_id">
+        @foreach ($organisasis as $organisasi)
+        @if (old('organisasi_id') == $organisasi->id)
+        <option value="{{ $organisasi->id }}" selected>{{ $organisasi->name }}</option>
         @else
-        <option value="{{ $team->id }}">{{ $team->name }}</option>
+        <option value="{{ $organisasi->id }}">{{ $organisasi->name }}</option>
 
 
         @endif
@@ -29,13 +29,69 @@
     </div>
 
     <div class="mb-3">
-      <label for="away_team_id" class="form-label">Away Team</label>
-      <select class="form-select" name="away_team_id">
-        @foreach ($teams as $team)
-        @if (old('away_team_id') == $team->id)
-        <option value="{{ $team->id }}" selected>{{ $team->name }}</option>
+      <label for="name" class="form-label">Nama Acara</label>
+      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required
+        value="{{ old('name') }}">
+      @error('name')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+
+      @enderror
+
+    </div>
+
+
+    <div class="mb-3">
+      <label for="desc" class="form-label">Deskripsi</label>
+      <input type="text" class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc" required
+        value="{{ old('desc') }}">
+      @error('desc')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+
+      @enderror
+
+    </div>
+
+
+
+
+    <div class="mb-3">
+      <label for="date" class="form-label">date</label>
+      <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" required
+        value="{{ old('date') }}">
+      @error('date')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+
+      @enderror
+
+    </div>
+
+    <div class="mb-3">
+      <label for="time" class="form-label">time</label>
+      <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" required
+        value="{{ old('time') }}">
+      @error('time')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+
+      @enderror
+
+    </div>
+
+    <div class="mb-3">
+      <label for="priority" class="form-label">Home Team</label>
+      <select class="form-select" name="priority">
+        @foreach ($prioritas as $a)
+        @if (old('priority') == $a)
+        <option value="{{ $a }}" selected>{{ $a }}</option>
         @else
-        <option value="{{ $team->id }}">{{ $team->name }}</option>
+        <option value="{{ $a }}">{{ $a}}</option>
 
 
         @endif
@@ -43,33 +99,6 @@
         @endforeach
 
       </select>
-    </div>
-
-
-    <div class="mb-3">
-      <label for="tanggal" class="form-label">tanggal</label>
-      <input type="date" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal"
-        required value="{{ old('tanggal') }}">
-      @error('tanggal')
-      <div class="invalid-feedback">
-        {{ $message }}
-      </div>
-
-      @enderror
-
-    </div>
-
-    <div class="mb-3">
-      <label for="waktu" class="form-label">Waktu</label>
-      <input type="time" class="form-control @error('waktu') is-invalid @enderror" id="waktu" name="waktu" required
-        value="{{ old('waktu') }}">
-      @error('waktu')
-      <div class="invalid-feedback">
-        {{ $message }}
-      </div>
-
-      @enderror
-
     </div>
 
 

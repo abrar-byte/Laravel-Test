@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota;
+use App\Models\Olahraga;
 use App\Models\Organisasi;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -34,7 +35,9 @@ class AdminOrganisasiController extends Controller
     public function create()
     {
         return view('dashboard.organisasis.create',   [
-            'organisasis' => Organisasi::all()
+            'organisasis' => Organisasi::all(),
+            'olahragas' => Olahraga::all()
+
         ]);
     }
 
@@ -54,7 +57,7 @@ class AdminOrganisasiController extends Controller
              'logo' => 'image|file|max:1024',
             'year' => 'required|max:2022',
             'address' => 'required',
-            'sport' => 'required',
+            'olahraga_id' => 'required',
             
 
         ]);
@@ -95,6 +98,8 @@ class AdminOrganisasiController extends Controller
         //
         return view('dashboard.organisasis.edit', [
             'organisasi' => $organisasi,
+            'olahragas' => Olahraga::all()
+
         ]);
     }
 
@@ -112,7 +117,7 @@ class AdminOrganisasiController extends Controller
             'logo' => 'image|file|max:1024',
             'year' => 'required|max:2022',
             'address' => 'required',
-            'sport' => 'required',
+            'olahraga_id' => 'required',
 
         ]);
 

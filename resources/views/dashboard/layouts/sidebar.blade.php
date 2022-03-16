@@ -39,15 +39,22 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard/schedules*') ? 'active' : '' }}" href="/dashboard/schedules">
+        <a class="nav-link {{ Request::is('dashboard/jadwals*') ? 'active' : '' }}" href="/dashboard/jadwals">
           <span data-feather="calendar"></span>
-          Schedules
+          Jadwal Acara
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard/games*') ? 'active' : '' }}" href="/dashboard/games">
+        <a class="nav-link {{ Request::is('dashboard/hasils*') ? 'active' : '' }}" href="/dashboard/hasils">
           <span data-feather="play"></span>
-          Match Results
+          Hasil Acara
+        </a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/olahragas*') ? 'active' : '' }}" href="/dashboard/olahragas">
+          <span data-feather="play"></span>
+          Cabang Olahraga
         </a>
 
       </li>

@@ -41,8 +41,16 @@ class Anggota extends Model
 
     public function organisasi()
     {
-        return $this->belongsTo(Organisasi::class);
+    	return $this->belongsToMany(Organisasi::class)->withPivot(['position']);
     }
+    public function hasil()
+    {
+    	return $this->belongsToMany(Hasil::class);
+    }
+
+
+
+
 
    
 

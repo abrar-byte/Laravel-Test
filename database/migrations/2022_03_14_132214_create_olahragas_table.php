@@ -13,19 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('organisasis', function (Blueprint $table) {
+        Schema::create('olahragas', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('logo')->nullable();
-            $table->integer('year');
-            $table->text('address');
-            $table->foreignId('olahraga_id') ;
-            // $table->string('sport');
-         
             $table->timestamps();
             $table->softDeletes();
-           
+
         });
     }
 
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organisasis');
+        Schema::dropIfExists('olahragas');
     }
 };

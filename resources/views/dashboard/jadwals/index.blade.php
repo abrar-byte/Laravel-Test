@@ -14,34 +14,36 @@
 @endif
 
 
-<div class="table-responsive col-lg-8">
-  <a href="/dashboard/schedules/create" class="btn btn-primary mb-3">Create New Schedule</a>
+<div class="table-responsive col-lg-10">
+  <a href="/dashboard/jadwals/create" class="btn btn-primary mb-3">Tambahkan Jadwal</a>
   <table class="table table-striped table-sm">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Tim Tuan Rumah</th>
-        <th scope="col">Tim Tandang</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
+        <th scope="col">Organisasi</th>
+        <th scope="col">Nama Acara</th>
+        <th scope="col">Deskripsi Acara</th>
+        <th scope="col">Tanggal Acara</th>
+        <th scope="col">Waktu Acara</th>
+        <th scope="col">Tingkat Prioritas</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($schedules as $schedule)
+      @foreach ($jadwals as $jadwal)
 
       <tr>
         <td>{{ $loop->iteration }}</td>
-        <td>{{ $schedule->homeTeam->name }}</td>
-        <td>{{ $schedule->awayTeam->name }}</td>
-        <td>{{ $schedule->tanggal }}</td>
-        <td>{{ $schedule->waktu }}</td>
-
+        <td>{{ $jadwal->organisasi->name }}</td>
+        <td>{{ $jadwal->name }}</td>
+        <td>{{ $jadwal->desc }}</td>
+        <td>{{ $jadwal->date }}</td>
+        <td>{{ $jadwal->time }}</td>
+        <td>{{ $jadwal->priority }}</td>
         <td>
-
-          <a href="/dashboard/schedules/{{ $schedule->id }}/edit" class="badge bg-warning "><span
+          <a href="/dashboard/jadwals/{{ $jadwal->id }}/edit" class="badge bg-warning "><span
               data-feather="edit"></span></a>
-          <form action="/dashboard/schedules/{{ $schedule->id }}" method="post" class="d-inline">
+          <form action="/dashboard/jadwals/{{ $jadwal->id }}" method="post" class="d-inline">
             @method('delete')
             @csrf
             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span

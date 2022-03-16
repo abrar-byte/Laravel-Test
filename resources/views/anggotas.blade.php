@@ -26,54 +26,65 @@
 
 
 <div class="container">
-  <div class="row">
-    @foreach ($anggotas as $anggota)
-
-    <div class="col-md-4 mb-3">
-      <div class="card" style="width: 18rem;">
-        <div class="px-3 py-2 text-white" style="background-color : rgba(0,0,0,0.7)"><a
-            href="/players?team={{ $anggota->organisasi->slug }}" class="text-decoration-none text-white">{{
-            $anggota->organisasi->name }}</a></div>
-
-
-        <div class="card-body">
-          <div class="card-title">
-            <h5>Nama Anggota Organisasi :</h5>
-            <p>{{ $anggota->name }}</p>
-          </div>
-          <div class="card-title">
-            <h5>Organisasi</h5>
-            <p>{{ $anggota->organisasi->name }}</p>
-          </div>
-          <div class="card-title">
-            <h5>Tinggi Badan</h5>
-            <p>{{ $anggota->height }}cm</p>
-          </div>
-          <div class="card-title">
-            <h5>Berat Badan</h5>
-            <p>{{ $anggota->weight }}kg</p>
-          </div>
-          <div class="card-title">
-            <h5>Posisi Anggota</h5>
-            <p>{{ $anggota->position }}</p>
-          </div>
-          <div class="card-title">
-            <h5>Nomor Ponsel</h5>
-            <p>{{ $anggota->number }}</p>
-          </div>
+  <div class="row mb-5">
+    <div class="card ">
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Anggota</th>
+              <th>Organisasi</th>
+              <th>Posisi Anggota</th>
+              <th>Nomor Ponsel</th>
+            </tr>
+          </thead>
+          <tbody>
 
 
 
+            @foreach($anggotas as $key =>$anggota)
 
-
-        </div>
+            <tr>
+              <td>{{ $key + 1 }}</td>
+              <td>{{ $anggota->name }}</td>
+              <td>
+                <ul>
+                  @if ($anggota->organisasi->count())
+                  @foreach($anggota->organisasi as $key => $h)
+                  <li> {{ $h->name }} </li>
+                  @endforeach
+                  @else
+                  <p class="text-danger">Tidak ada</p>
+                  @endif
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  @if ($anggota->organisasi->count())
+                  @foreach($anggota->organisasi as $key => $h)
+                  <li> {{ $h->pivot->position }} </li>
+                  @endforeach
+                  @else
+                  <p class="text-danger">Tidak ada</p>
+                  @endif
+                </ul>
+              </td>
+              <td>
+                {{ $anggota->number }}
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
       </div>
     </div>
-    @endforeach
+
+
   </div>
 </div>
 @else
-<p class="text-center fs-4">No player found</p>
+<p class="text-center fs-4">Tidak ada Anggota</p>
 @endif
 
 

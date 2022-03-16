@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('anggotas', function (Blueprint $table) {
+        Schema::create('anggota_hasil', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('organisasi_id');           
-            $table->string('name');
-            $table->string('slug')->unique();          
-            $table->integer('height');
-            $table->integer('weight');
-            // $table->string('position');
-            $table->string('number')->unique();
+            $table->foreignId('anggota_id');
+            $table->foreignId('hasil_id');
+            $table->text('contribution');
+            
+
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anggotas');
+        Schema::dropIfExists('anggota_hasil');
     }
 };

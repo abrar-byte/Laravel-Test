@@ -15,36 +15,28 @@
 
 
 <div class="table-responsive col-lg-6">
-  <a href="/dashboard/organisasis/create" class="btn btn-primary mb-3">Tambahkan Organisasi Baru</a>
+  <a href="/dashboard/olahragas/create" class="btn btn-primary mb-3">Tambahkan Cabang Olahraga Baru</a>
   <table class="table table-striped table-sm">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Nama Organisasi</th>
         <th scope="col">Cabang Olahraga</th>
 
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($organisasis as $organisasi)
+      @foreach ($olahragas as $olahraga)
 
       <tr>
         <td>{{ $loop->iteration }}</td>
-        <td>{{ $organisasi->name }}</td>
-        <td>
-          @if($organisasi->olahraga)
-          {{ $organisasi->olahraga->name }}
-          @else
-          <p>tidak ada</p>
-          @endif
+        <td>{{ $olahraga->name }}</td>
 
         <td>
-          <a href="/dashboard/organisasis/{{ $organisasi->slug }}" class="badge bg-info "><span
-              data-feather="eye"></span></a>
-          <a href="/dashboard/organisasis/{{ $organisasi->slug }}/edit" class="badge bg-warning "><span
+
+          <a href="/dashboard/olahragas/{{ $olahraga->slug }}/edit" class="badge bg-warning "><span
               data-feather="edit"></span></a>
-          <form action="/dashboard/organisasis/{{ $organisasi->id }}" method="post" class="d-inline">
+          <form action="/dashboard/olahragas/{{ $olahraga->id }}" method="post" class="d-inline">
             @method('delete')
             @csrf
             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span

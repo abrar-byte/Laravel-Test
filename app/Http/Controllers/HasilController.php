@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class HasilController extends Controller
 {
-    //
 
     public function index(){
+        $hasils=Hasil::get();
         return view('/hasils',[
             'title' =>'Jadwal Acara',
         'active' => 'hasils',
-            'hasils' =>Hasil::all()
+            'hasils' =>$hasils
         ]);
     }
 

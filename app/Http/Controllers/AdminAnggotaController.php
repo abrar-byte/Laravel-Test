@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota;
+use App\Models\AnggotaOrganisasi;
 use App\Models\Organisasi;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
-
+use Illuminate\Support\Arr;
 
 class AdminAnggotaController extends Controller
 {
@@ -33,6 +34,7 @@ class AdminAnggotaController extends Controller
     {
         $position=['Ketua','Staf','Anggota'];
         return view('dashboard.anggotas.create',[
+            'anggotas'=>Anggota::all(),
             'organisasis' => Organisasi::all(),
             'positions'=>$position
         ]);
@@ -51,14 +53,26 @@ class AdminAnggotaController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:anggotas',
-            'organisasi_id' => 'required',
+            // 'organisasi_id' => 'required',
             'height' => 'required|numeric|max:200',
             'weight' => 'required|numeric|max:200',
-            'position' => 'required|max:100',
+            // 'position' => 'required|max:100',
             'number' => 'required|numeric|unique:anggotas',
 
         ]);
             
+
+        $fakeId= Anggota::latest('id')->first();
+        // 'anggota_id' => $fakeId->id + 1,
+        $pivotData=$request->validate([
+            'organisasi_id'=> 'required',
+            'position'=> 'required',
+
+        ]) ;   
+        $pivotData = array_merge( $pivotData , ['anggota_id' => $fakeId->id + 1] ) ;
+        // return dd($pivotData); 
+        AnggotaOrganisasi::create($pivotData);
+
         //  return response()->json($res);
         // if($validatedData['number'] === $validatedData['away_team_id']){
         //     return abort(403,'Team tidak boleh sama');
@@ -117,10 +131,10 @@ class AdminAnggotaController extends Controller
     {
         $rules =([
             'name' => 'required|max:255',
-            'organisasi_id' => 'required',
+            // 'organisasi_id' => 'required',
             'height' => 'required|max:100',
             'weight' => 'required|max:100',
-            'position' => 'required|max:100',
+            // 'position' => 'required|max:100',
             'number' => 'required|numeric',
 
         ]);
