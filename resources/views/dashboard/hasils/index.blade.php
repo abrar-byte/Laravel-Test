@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Match Results</h1>
+  <h1 class="h2">Hasil Acara</h1>
 
 </div>
 @if (session()->has('success'))
@@ -14,21 +14,19 @@
 @endif
 <div class="table-responsive col-lg-10">
   <a href="/dashboard/hasils/create" class="btn btn-primary mb-3">Tambahkan Hasil Acara</a>
+  @if ($hasils->count())
+  <div class="mt-3">
+    <p class="text-muted">Tambahkan Anggota yang hadir dan kontribusinya dengan klik icon pensil berwarna kuning</p>
+  </div>
+
   <table class="table  table-striped table-md">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Acara</th>
-        {{-- <th scope="col">Resume</th> --}}
         <th scope="col">Anggota yang Hadir</th>
         <th scope="col">Kontribusi Anggota</th>
-        {{-- <th scope="col">Hasil </th> --}}
         <th scope="col">Action </th>
-
-
-
-
-
       </tr>
     </thead>
     <tbody>
@@ -36,7 +34,12 @@
 
       <tr>
         <td>{{ $loop->iteration }}</td>
+        @if ($hasil->jadwal)
+
         <td>{{ $hasil->jadwal->name }}</td>
+        @else
+        <td>Tidak ada</td>
+        @endif
         {{-- <td>{{ $hasil->resume }}</td> --}}
         <td>
           @if ($hasil->anggota->count())
@@ -77,6 +80,10 @@
 
     </tbody>
   </table>
+  @else
+  <p class="text-center text-muted fs-4">Belum Ada Hasil Acara</p>
+  @endif
+
 </div>
 
 

@@ -4,6 +4,7 @@
 
 <h1 class="mb-5">Hasil Acara Organisasi</h1>
 
+@if ($hasils->count())
 
 <div class="container">
   <div class="row">
@@ -68,6 +69,10 @@
 
   </div>
 </div>
+@else
+<p class="text-center text-muted fs-4">Belum Ada Hasil Acara</p>
+@endif
+
 
 
 

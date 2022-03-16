@@ -4,6 +4,7 @@
 
 <h1 class="mb-5">Organisasi</h1>
 
+@if ($organisasis->count())
 
 <div class="container">
   <div class="row">
@@ -47,23 +48,17 @@
                 <h5>Cabang Olahraga</h5>
                 <p>{{ $organisasi->olahraga->name }}</p>
               </div>
-
-
-
-
-
             </div>
-            {{--
-          </div> --}}
-
+          </div>
+        </a>
       </div>
-      </a>
+      @endforeach
     </div>
-    @endforeach
-
   </div>
-</div>
+  @else
+  <p class="text-center text-muted fs-4">Belum ada Organisasi</p>
+  @endif
 
 
 
-@endsection
+  @endsection

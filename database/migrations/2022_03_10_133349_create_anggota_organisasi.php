@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('anggota_organisasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('organisasi_id');           
-            $table->foreignId('anggota_id');  
+            $table->foreignId('organisasi_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');;;           
+            $table->foreignId('anggota_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');  
              $table->string('position');
             // $table->string('number')->unique();         
 

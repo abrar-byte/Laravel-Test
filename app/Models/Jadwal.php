@@ -5,14 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+
 
 
 class Jadwal extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use CascadeSoftDeletes;
+
 
     protected $guarded = ['id'];
+    protected $cascadeDeletes = ['hasil'];
+    protected $dates = ['deleted_at'];
 
 
     public function organisasi()
@@ -22,6 +28,6 @@ class Jadwal extends Model
 
     public function hasil()
     {
-        return $this->belongsTo(Hasil::class);
+        return $this->hasOne(Hasil::class);
     }
 }

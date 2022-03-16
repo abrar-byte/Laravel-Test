@@ -16,6 +16,8 @@
 
 <div class="table-responsive col-lg-6">
   <a href="/dashboard/organisasis/create" class="btn btn-primary mb-3">Tambahkan Organisasi Baru</a>
+  @if ($organisasis->count())
+
   <table class="table table-striped table-sm">
     <thead>
       <tr>
@@ -56,6 +58,9 @@
 
     </tbody>
   </table>
+  @else
+  <p class="text-center text-muted fs-4">Belum Ada Organisasi</p>
+  @endif
 </div>
 
 

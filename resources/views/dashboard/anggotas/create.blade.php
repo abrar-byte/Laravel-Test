@@ -30,7 +30,7 @@
 
       @enderror
     </div>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
       <label for="organisasi_id" class="form-label">Organisasi</label>
       <select class="form-select" name="organisasi_id">
         @foreach ($organisasis as $organisasi)
@@ -45,7 +45,7 @@
         @endforeach
 
       </select>
-    </div>
+    </div> --}}
 
 
     <div class="mb-3">
@@ -72,7 +72,7 @@
       @enderror
     </div>
 
-    <div class="mb-3">
+    {{-- <div class="mb-3">
       <label for="position" class="form-label">Posisi Anggota</label>
       <select class="form-select" name="position">
         @foreach ($positions as $position)
@@ -88,7 +88,7 @@
 
 
       </select>
-    </div>
+    </div> --}}
 
     <div class="mb-3">
       <label for="number" class="form-label">Nomor Telepon</label>

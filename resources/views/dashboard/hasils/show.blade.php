@@ -20,7 +20,7 @@
 
       <div class="row justify-content-center mb-5 mt-4">
         <div class="col-md-8">
-          <p>Acara :</p>
+          <p class="text-muted">Acara :</p>
           <h5 class="mb-3">{{ $hasil->jadwal->name }}</h5>
           <table class="table  table-striped table-md">
             <tr>
@@ -44,12 +44,16 @@
             </tr>
           </table>
 
-          <p>Resume acara :</p>
+          <p class="text-muted">Resume acara :</p>
           <article class="my-3 fs-5">
             {!! $hasil->resume !!}
           </article>
-          <p>Hasil yang dicapai dari acara :</p>
-          <h5>{{ $hasil->result }}</h5>
+          <p class="text-muted">Hasil yang dicapai dari acara :</p>
+          <article class="my-3 fs-5">
+
+            {!! $hasil->result !!}
+          </article>
+
 
           <a href="/dashboard/hasils" class="d-block mt-3">Back </a>
         </div>

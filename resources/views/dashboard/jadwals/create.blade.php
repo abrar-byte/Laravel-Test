@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Create New Schedule</h1>
+  <h1 class="h2">Buat Jadwal Acara</h1>
 
 </div>
 <div class="col-lg-8">
@@ -12,7 +12,7 @@
     @csrf
 
     <div class="mb-3">
-      <label for="organisasi_id" class="form-label">Home Team</label>
+      <label for="organisasi_id" class="form-label">Organisasi</label>
       <select class="form-select" name="organisasi_id">
         @foreach ($organisasis as $organisasi)
         @if (old('organisasi_id') == $organisasi->id)
@@ -105,7 +105,6 @@
 
     <button type="submit" class="btn btn-primary">Add Player</button>
   </form>
-  {{-- @dd(old('home_team_id')) --}}
 
 
 </div>

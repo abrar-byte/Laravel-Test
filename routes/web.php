@@ -43,8 +43,7 @@ Route::get('/about', function () {
 "active" => "about",
 "name" => "OYA COMPANY",
 "desc" => "Perusahaan OYA merupakan sebuah perusahaan yang menaungi beberapa organisasi
-olahraga di Indonesia, perusahaan ini membangun sebuah aplikasi sederhana
-Pengelolaan organisasi olahraga yang dinaunginya.",
+olahraga di Indonesia.",
 ]
     );
   
@@ -103,7 +102,6 @@ Route::resource('/dashboard/anggotas', AdminAnggotaController::class)->middlewar
 Route::get('/dashboard/anggota/checkSlug',[AdminAnggotaController::class,'checkSlug']);
 
 
-Route::resource('/dashboard/pivotAnggota', AnggotaOrganisasiController::class)->middleware('admin');
 
 
 Route::resource('/dashboard/jadwals', AdminJadwalController::class)->middleware('admin');

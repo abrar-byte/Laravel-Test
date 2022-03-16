@@ -70,7 +70,7 @@ class AdminOrganisasiController extends Controller
      
 
         Organisasi::create($validatedData); 
-        return redirect('/dashboard/organisasis')->with('success','New Team has been added');
+        return redirect('/dashboard/organisasis')->with('success','New Organisasi has been added');
     }
 
     /**
@@ -143,7 +143,7 @@ class AdminOrganisasiController extends Controller
       
         Organisasi::where('id', $organisasi->id)
         ->update($validatedData); 
-        return redirect('/dashboard/organisasis')->with('success','Team has been updated!');
+        return redirect('/dashboard/organisasis')->with('success','Organisasi has been updated!');
     }
 
     /**
@@ -157,7 +157,7 @@ class AdminOrganisasiController extends Controller
         $organisasi= Organisasi::findOrFail($id);
         $organisasi->delete();
         // Team::destroy($organisasi->id); 
-        return redirect('/dashboard/organisasis')->with('success','Team has been deleted!');
+        return redirect('/dashboard/organisasis')->with('success','Organisasi has been deleted!');
     }
 
     public function checkSlug(Request $request)

@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+
 
 class Anggota extends Model
 {
     use HasFactory;
     use Sluggable;
     use SoftDeletes;
+    use CascadeSoftDeletes;
+    protected $cascadeDeletes = ['organisasi','hasil'];
+
+    protected $dates = ['deleted_at'];
+
     // fillable berarti yg boleh diisi
     // protected $fillable = ['name','excerpt','body'];
     // guarded berarti yg tidak boleh diisi hanya

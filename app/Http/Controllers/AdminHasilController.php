@@ -53,12 +53,14 @@ class AdminHasilController extends Controller
         $validatedData = $request->validate([
             'jadwal_id' => 'required',
             'resume' => 'required',
-            // 'organisasi_id' => 'required',
             'result' => 'required',
             
 
         ]);
-            
+        $jadwal=Jadwal::findOrFail($validatedData['jadwal_id'] );
+        if($validatedData['jadwal_id'] === (string)$jadwal->id){
+            return abort(403,'Jadwal Acara yang Kamu Pilih Sudah Ada Hasilnya');
+        }
 
        
      
@@ -90,18 +92,22 @@ class AdminHasilController extends Controller
     public function edit(Hasil $hasil)
     {
 //         $collection = Anggota::all();
-//         $organisasi=AnggotaHasil::where('hasil_id',$hasil->jadwal->organisasi_id);
+        $coba=AnggotaHasil::where('hasil_id',$hasil->id);
  
 // $filtered = $collection->filter(function ($value, $key) {
 //     return $value ;
 // });
  
 // $filtered->all();
+// $filteres=AnggotaHasil::whereHas('hasil_id',function($query) use($user_ids){
+//     $query->where('users.id',$user_ids[0]);
+// });
         return view('dashboard.hasils.edit', [
             'hasil'=>$hasil,
             'jadwals'=>Jadwal::all(),
             'anggotas'=>Anggota::all(),
             // 'filters'=>$filtered
+            'coba'=>$coba
 
         ]);
     }
@@ -131,13 +137,57 @@ class AdminHasilController extends Controller
         ]) ;   
         $pivotData = array_merge( $pivotData , ['hasil_id'=> $hasil->id] ) ;
 
-      
-        AnggotaHasil::where('hasil_id',$hasil->id)->create($pivotData);
+        $anggota2=Anggota::findOrFail($pivotData['anggota_id']);
+        $collection= $anggota2->organisasi;
+            $idx = $collection->map(function($item, $key) {
+            return $item->id;
+              });
+             $organisasi2=Organisasi::findOrFail($idx[count($idx)-1]);
+  
+
+        if(!$hasil->anggota->count()){
+
+            AnggotaHasil::where('hasil_id',$hasil->id)->create($pivotData);
     
       
         Hasil::where('id', $hasil->id)
         ->update($validatedData); 
-        return redirect('/dashboard/hasils')->with('success','Anggota has been updated!');
+        return redirect('/dashboard/hasils')->with('success',' has been updated!');
+            }
+
+        if($hasil->anggota->count()){
+            $collection= $hasil->anggota;
+            $lastId = $collection->map(function($item, $key) {
+            return $item->id;
+            });
+       
+            $anggota1=Anggota::findOrFail($lastId[count($lastId)-1]);
+
+            $collection= $anggota1->organisasi;
+            $id = $collection->map(function($item, $key) {
+            return $item->id;
+              });
+             $organisasi1=Organisasi::findOrFail($id[count($id)-1]);
+        
+            //  return dd($organisasi1->id,$organisasi2->id);
+            if ($organisasi1->id !== $organisasi2->id) {
+                return abort(403,'Anggota yang anda tambahkan tidak termasuk dalam organisasi ini');
+            }
+            $currentAnggota=AnggotaHasil::where('anggota_id',$anggota2->id);
+            // return dd($currentAnggota);
+            if ($anggota1->id === $anggota2->id) {
+                return abort(403,'Anggota yang anda tambahkan sama');
+            }
+            AnggotaHasil::where('hasil_id',$hasil->id)->create($pivotData);
+    
+      
+            Hasil::where('id', $hasil->id)
+            ->update($validatedData); 
+            return redirect('/dashboard/hasils')->with('success',' has been updated!');
+
+        }
+      
+       
     }
 
     /**
@@ -155,7 +205,7 @@ class AdminHasilController extends Controller
         // return redirect('/');
         // $organisasi->id->delete();
         // organisasi::destroy($organisasi->id); 
-        return redirect('/dashboard/anggotas')->with('success','organisasi has been deleted!');
+        return redirect('/dashboard/hasils')->with('success','organisasi has been deleted!');
     }
 
 }

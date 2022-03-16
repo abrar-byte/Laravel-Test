@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('hasils', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jadwal_id');
+            $table->foreignId('jadwal_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->longText('resume');
             // $table->mediumText('persons');
             // $table->text('contribution');

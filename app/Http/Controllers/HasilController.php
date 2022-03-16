@@ -12,7 +12,7 @@ class HasilController extends Controller
         $hasils=Hasil::get();
         return view('/hasils',[
             'title' =>'Jadwal Acara',
-        'active' => 'hasils',
+            'active' => 'hasils',
             'hasils' =>$hasils
         ]);
     }
@@ -22,7 +22,6 @@ class HasilController extends Controller
         [
             "title" => "Single hasil",
             "active" => 'hasil',
-
             "hasil" => $hasil
         ]);
     }

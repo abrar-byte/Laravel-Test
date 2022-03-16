@@ -15,9 +15,13 @@ class Olahraga extends Model
 {
     use HasFactory;
     use Sluggable;
-    // use SoftDeletes;
-    // use CascadeSoftDeletes;
+    use SoftDeletes;
+    use CascadeSoftDeletes;
     protected $guarded = ['id'];
+
+    protected $cascadeDeletes = ['organisasi'];
+
+    protected $dates = ['deleted_at'];
 
     public function organisasi()
     {

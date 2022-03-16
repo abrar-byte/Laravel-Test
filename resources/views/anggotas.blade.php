@@ -84,7 +84,7 @@
   </div>
 </div>
 @else
-<p class="text-center fs-4">Tidak ada Anggota</p>
+<p class="text-center text-muted fs-4">Tidak ada Anggota</p>
 @endif
 
 

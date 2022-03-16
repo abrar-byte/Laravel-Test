@@ -35,22 +35,7 @@
 
       @enderror
     </div>
-    <div class="mb-3">
-      <label for="organisasi" class="form-label">Organisasi</label>
-      <select class="form-select" name="organisasi_id">
-        @foreach ($organisasis as $organisasi)
-        @if (old('organisasi_id',$anggota->organisasi_id) == $organisasi->id)
-        <option value="{{ $organisasi->id }}" selected>{{ $organisasi->name }}</option>
-        @else
-        <option value="{{ $organisasi->id }}">{{ $organisasi->name }}</option>
 
-
-        @endif
-
-        @endforeach
-
-      </select>
-    </div>
 
 
     <div class="mb-3">
@@ -77,23 +62,7 @@
       @enderror
     </div>
 
-    <div class="mb-3">
-      <label for="position" class="form-label">Posisi Anggota</label>
-      <select class="form-select" name="position">
-        @foreach ($positions as $position)
-        @if (old('position',$anggota->position) == $position)
-        <option value="{{ $position }}" selected>{{ $position }}</option>
-        @else
-        <option value="{{ $position }}">{{ $position }}</option>
 
-
-        @endif
-
-        @endforeach
-
-
-      </select>
-    </div>
 
     <div class="mb-3">
       <label for="number" class="form-label">Nomor Telepon</label>
@@ -105,6 +74,45 @@
       </div>
 
       @enderror
+    </div>
+
+    <div class="mt-5">
+      <h5>Tambahkan Organisasi Anggota dan Posisi Anggota</h5>
+
+      <div class="mb-3">
+        <label for="organisasi" class="form-label">Organisasi</label>
+        <select class="form-select" name="organisasi_id">
+          @foreach ($organisasis as $organisasi)
+          @if (old('organisasi_id',$anggota->organisasi_id) == $organisasi->id)
+          <option value="{{ $organisasi->id }}" selected>{{ $organisasi->name }}</option>
+          @else
+          <option value="{{ $organisasi->id }}">{{ $organisasi->name }}</option>
+
+
+          @endif
+
+          @endforeach
+
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="position" class="form-label">Posisi Anggota</label>
+        <select class="form-select" name="position">
+          @foreach ($positions as $position)
+          @if (old('position',$anggota->position) == $position)
+          <option value="{{ $position }}" selected>{{ $position }}</option>
+          @else
+          <option value="{{ $position }}">{{ $position }}</option>
+
+
+          @endif
+
+          @endforeach
+
+
+        </select>
+      </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Tambahkan Anggota</button>

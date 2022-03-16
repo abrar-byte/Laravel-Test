@@ -6,7 +6,7 @@
 
 </div>
 <div class="col-lg-8">
-  {{-- @dd($filters) --}}
+  {{-- @dd($coba) --}}
   <form method="post" action="/dashboard/hasils/{{ $hasil->id }}" class="mb-5">
     @csrf
     @method('put')
@@ -64,6 +64,7 @@
 
       <div class="mb-3">
         <label for="anggota" class="form-label">Anggota yang Hadir </label>
+        <p class="text-muted">Masukkan sesuai acara organisasinya!</p>
         <select class="form-select" name="anggota_id">
           @foreach ($anggotas as $anggota)
           @if (old('anggota_id',$anggota->id) == $anggota->id)

@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->integer('year');
             $table->text('address');
-            $table->foreignId('olahraga_id') ;
+            $table->foreignId('olahraga_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');;
             // $table->string('sport');
          
             $table->timestamps();

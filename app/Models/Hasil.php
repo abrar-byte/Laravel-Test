@@ -6,12 +6,19 @@ use App\Models\Jadwal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+
 
 
 class Hasil extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use CascadeSoftDeletes;
+    protected $cascadeDeletes = ['anggota'];
+
+    protected $dates = ['deleted_at'];
+
 
     protected $guarded = ['id'];
 

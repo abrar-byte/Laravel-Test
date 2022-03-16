@@ -16,8 +16,12 @@
 
 <div class="table-responsive col-lg-8">
   <a href="/dashboard/anggotas/create" class="btn btn-primary mb-3">Tambahkan Anggota</a>
+  @if ($anggotas->count())
 
-  <a href="/dashboard/pivotAnggota/create" class="btn btn-primary mb-3">Organisasi & posisi</a>
+  <div class="mt-3">
+    <p class="text-muted">Tambahkan Organisasi yang diikuti dan posisi anggotanya dengan klik icon pensil berwarna
+      kuning</p>
+  </div>
   <table class="table table-striped table-sm">
     <thead>
       <tr>
@@ -77,6 +81,9 @@
 
     </tbody>
   </table>
+  @else
+  <p class="text-center text-muted fs-4">Belum Ada Anggota</p>
+  @endif
 </div>
 
 

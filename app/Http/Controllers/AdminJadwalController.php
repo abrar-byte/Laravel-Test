@@ -47,18 +47,17 @@ class AdminJadwalController extends Controller
     {
         $validatedData = $request->validate([
             'organisasi_id' => 'required',
-            'name' => 'required',
+            'name' => 'required|max:255',
             'date' => 'required|after:yesterday',
             'time' => 'required',
             'desc' => 'required',
-
             'priority'=>'required'
             
         ]);
         
    
         Jadwal::create($validatedData); 
-        return redirect('/dashboard/jadwals')->with('success','New Schedule has been added');
+        return redirect('/dashboard/jadwals')->with('success','New Jadwal has been added');
     
     }
 
@@ -113,7 +112,7 @@ class AdminJadwalController extends Controller
         
         Jadwal::where('id', $jadwal->id)
         ->update($validatedData); 
-        return redirect('/dashboard/jadwals')->with('success','Team has been updated!');
+        return redirect('/dashboard/jadwals')->with('success','Jadwal has been updated!');
     }
 
     /**
@@ -124,13 +123,14 @@ class AdminJadwalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
         $jadwal= Jadwal::findOrFail($id);
+        $jadwal->hasil()->delete();
         $jadwal->delete();
         
         // return redirect('/');
         // $organisasi->id->delete();
         // organisasi::destroy($organisasi->id); 
-        return redirect('/dashboard/jadwals')->with('success','organisasi has been deleted!');
+        return redirect('/dashboard/jadwals')->with('success','Jadwal has been deleted!');
     }
 }

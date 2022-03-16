@@ -53,7 +53,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/olahragas*') ? 'active' : '' }}" href="/dashboard/olahragas">
-          <span data-feather="play"></span>
+          <span data-feather="sliders"></span>
           Cabang Olahraga
         </a>
 

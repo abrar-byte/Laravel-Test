@@ -4,6 +4,7 @@
 
 <h1 class="mb-5">Jadwal Acara Organisasi</h1>
 
+@if ($jadwals->count())
 
 <div class="container">
   <div class="row">
@@ -49,6 +50,11 @@
 
   </div>
 </div>
+
+@else
+<p class="text-center text-muted fs-4">Belum ada Jadwal Acara Organisasi</p>
+@endif
+
 
 
 

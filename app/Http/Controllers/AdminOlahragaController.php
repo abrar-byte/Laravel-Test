@@ -49,7 +49,7 @@ class AdminOlahragaController extends Controller
      
 
         Olahraga::create($validatedData); 
-        return redirect('/dashboard/olahragas')->with('success','New Team has been added');
+        return redirect('/dashboard/olahragas')->with('success','New Cabang Olahraga has been added');
     }
 
     /**
@@ -103,7 +103,7 @@ class AdminOlahragaController extends Controller
         
         Olahraga::where('id', $olahraga->id)
         ->update($validatedData); 
-        return redirect('/dashboard/olahragas')->with('success','Team has been updated!');
+        return redirect('/dashboard/olahragas')->with('success','Cabang Olahraga has been updated!');
     }
 
     /**
@@ -114,9 +114,11 @@ class AdminOlahragaController extends Controller
      */
     public function destroy($id)
     {
+        
         $olahraga= Olahraga::findOrFail($id);
+        // $olahraga->organisasi()->delete();
         $olahraga->delete();
-        return redirect('/dashboard/olahragas')->with('success','Team has been deleted!');
+        return redirect('/dashboard/olahragas')->with('success','Cabang Olahraga has been deleted!');
     }
 
     public function checkSlug(Request $request)

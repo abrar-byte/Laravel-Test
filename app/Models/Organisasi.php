@@ -14,10 +14,12 @@ class Organisasi extends Model
 {
     use HasFactory;
     use Sluggable;
-    // use SoftDeletes;
-    // use CascadeSoftDeletes;
+    use SoftDeletes;
+    use CascadeSoftDeletes;
 
+    protected $cascadeDeletes = ['jadwal','anggota'];
 
+    protected $dates = ['deleted_at'];
     protected $guarded = ['id'];
 
     public function anggota()
